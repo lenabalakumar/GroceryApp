@@ -34,7 +34,7 @@ Widget productCard(BuildContext context,Product product) {
                   height: MediaQuery.of(context).size.height * 1 / 3 -
                       MediaQuery.of(context).size.height * 1 / 10,
                   decoration: BoxDecoration(
-                    color: Colors.green,
+                    color: Theme.of(context).accentColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ClipRRect(
@@ -108,7 +108,7 @@ Widget productCard(BuildContext context,Product product) {
                     height: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Colors.green,
+                      color: Theme.of(context).accentColor,
                     ),
                     child: Center(
                       child: Text(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:groceryapp/Data/Model/User.dart';
 import 'package:groceryapp/Data/Repository/CartRepository.dart';
 import 'package:groceryapp/Data/Repository/OrderRepository.dart';
 import 'package:meta/meta.dart';
@@ -25,9 +26,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         orderRepository.placeOrder(
           cartRepository.cartItems,
           cartRepository.totalCValue,
-          event.mobileNumber,
           Uuid().v4(),
-          DateTime.now()
+          DateTime.now(),
+          User(userFullName: event.userDetails.userFullName, userMobileNumber: event.userDetails.userMobileNumber, userAddressLineOne: event.userDetails.userAddressLineOne, userAddressLineTwo: event.userDetails.userAddressLineTwo, userPincode: event.userDetails.userPincode, userLandmark: event.userDetails.userLandmark),
         );
       }
     } on Exception {}

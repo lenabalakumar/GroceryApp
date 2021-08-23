@@ -4,7 +4,7 @@ part of 'order_bloc.dart';
 abstract class OrderEvent {}
 
 class PlaceOrderEvent extends OrderEvent {
-  final String mobileNumber;
+  final User userDetails;
 
-  PlaceOrderEvent({required this.mobileNumber});
+  PlaceOrderEvent({required this.userDetails});
 }

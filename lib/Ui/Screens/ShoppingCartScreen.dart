@@ -104,7 +104,7 @@ class ShoppingCartBody extends StatelessWidget {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
@@ -188,7 +188,7 @@ class ShoppingCartBody extends StatelessWidget {
                                 width: 30,
                                 height: 30,
                                 decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: Theme.of(context).accentColor,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Center(
                                   child: Text(
@@ -214,7 +214,7 @@ class ShoppingCartBody extends StatelessWidget {
                                 width: 30,
                                 height: 30,
                                 decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: Theme.of(context).accentColor,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Center(
                                   child: Text(

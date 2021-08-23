@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pushNamed('/shoppingCart');
                   },
-                  icon: Icon(Icons.shopping_bag),
+                  icon: Icon(Icons.shopping_bag_outlined, color: Colors.white,),
                 ),
                 Positioned(
                   top: 2,
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                   child: Container(
                     width: 20,
                     height: 20,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.green),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).accentColor),
                     child: Center(
                       child: BlocBuilder<CartProviderBloc, CartProviderState>(
                         builder: (context, state) {

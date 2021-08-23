@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:groceryapp/Data/Model/Order.dart';
 import 'package:groceryapp/Data/Model/Product.dart';
+import 'package:groceryapp/Data/Model/User.dart';
 import 'package:groceryapp/Data/Repository/CartRepository.dart';
 
 class OrderRepository extends Equatable {
@@ -10,18 +11,18 @@ class OrderRepository extends Equatable {
   CartRepository cartRepository = CartRepository();
 
   void placeOrder(
-      List<Product> cartItems, double cartTotal, String userMobileNumber, String orderID, DateTime orderPlacedTime) {
+      List<Product> cartItems, double cartTotal, String orderID, DateTime orderPlacedTime, User user) {
     orders.add(Order(
       orderID: orderID,
         orderPlacedTime: orderPlacedTime,
-        userMobileNumber: userMobileNumber,
         totalCartValue: cartTotal,
-        productsFromCart: cartItems));
-    addOrderToFirebase(cartItems, cartTotal, userMobileNumber, orderID, orderPlacedTime);
+        productsFromCart: cartItems,
+    user: user));
+    addOrderToFirebase(cartItems, cartTotal, orderID, orderPlacedTime, user);
   }
 
   Future<void> addOrderToFirebase(List<Product> cartItems, double cartTotal,
-      String userMobileNumber, String orderID, DateTime orderPlacedTime) async {
+      String orderID, DateTime orderPlacedTime, User user) async {
     final CollectionReference collection =
         FirebaseFirestore.instance.collection("Orders");
 
@@ -39,7 +40,6 @@ class OrderRepository extends Equatable {
       orderID: orderID,
         orderPlacedTime: orderPlacedTime,
         totalCartValue: cartTotal,
-        userMobileNumber: userMobileNumber,
         productsFromCart: cartItems.map((e) {
           return Product(
               productID: e.productID,
@@ -49,7 +49,7 @@ class OrderRepository extends Equatable {
               productQuantity: e.productQuantity,
               productInStock: e.productInStock,
               productSKU: e.productSKU);
-        }).toList());
+        }).toList(), user: user);
 
     await collection.add(order.toJson()).whenComplete(() => cartRepository.cartItems = []);
 
