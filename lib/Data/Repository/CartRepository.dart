@@ -10,23 +10,13 @@ class CartRepository {
     return _instance;
   }
 
-  int _aInteger = 0;
-
-  set aInteger(int integerToAssign) => _aInteger = integerToAssign;
-
   List<Product> _cartItems = [];
-
 
   List<Product> get cartItems => _cartItems;
 
   set cartItems(List<Product> value) {
     _cartItems = value;
   }
-  // List<Product> get getCartItems => _cartItems;
-  //
-  // set getCartItems(List<Product> cartItems) {
-  //   this._cartItems = cartItems;
-  // }
 
   void addItemToCart(Product productAddedToCart) {
     int itemIndex = _cartItems.indexWhere((existingProductInCart) =>
@@ -44,7 +34,6 @@ class CartRepository {
       }
     }
     calculateTotal();
-    print(_aInteger);
   }
 
   void reduceItemFromCart(Product productToReduce) {
@@ -83,7 +72,4 @@ class CartRepository {
 
   Future<List<Product>> loadCartItems() =>
       Future.delayed(Duration(microseconds: 2000), () => _cartItems);
-
-  // @override
-  // List<Object?> get props => [];
 }

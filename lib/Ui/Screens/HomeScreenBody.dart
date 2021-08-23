@@ -10,82 +10,58 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductRepository productRepository = new ProductRepository();
     return SafeArea(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TopCategoryScreen(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder(
-                future: productRepository.fetchTopProducts(),
-                builder: (context, AsyncSnapshot<List<Product>> snapshot) {
-                  if (!snapshot.hasData) {
-                    return CircularProgressIndicator();
-                  } else
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: snapshot.data!.map(
-                          (e) {
-                            return productCard(
-                              context,
-                              e,
-                            );
-                          },
-                        ).toList(),
-                      ),
-                    );
-                },
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width - 20,
-              height: MediaQuery.of(context).size.height / 20,
-              decoration: BoxDecoration(
-                color: Colors.green.withOpacity(.75),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TopCategoryScreen(),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 24.0, left: 8.0, right: 8.0, bottom: 8.0),
                 child: Text(
-                  'Free shipping on orders worth Rs. 300 or above',
+                  'Top Vegetables'.toUpperCase(),
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      color: Colors.white),
+                    fontWeight: FontWeight.w300,
+                    fontSize: 16,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder(
-                future: productRepository.fetchTopProducts(),
-                builder: (context, AsyncSnapshot<List<Product>> snapshot) {
-                  if (!snapshot.hasData) {
-                    return CircularProgressIndicator();
-                  } else
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: snapshot.data!.map(
-                          (e) {
-                            return productCard(
-                              context,
-                              e,
-                            );
-                          },
-                        ).toList(),
-                      ),
-                    );
-                },
+              TopVegetables(),
+              Container(
+                width: MediaQuery.of(context).size.width - 20,
+                height: MediaQuery.of(context).size.height / 20,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Center(
+                  child: Text(
+                    'Free delivery on orders worth Rs. 300 or above',
+                    style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color: Colors.white),
+                  ),
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 24.0, left: 8.0, right: 8.0, bottom: 8.0),
+                child: Text(
+                  'Top Fruits'.toUpperCase(),
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              TopFruits(),
+            ],
+          ),
         ),
       ),
     );
@@ -147,4 +123,64 @@ Widget topCategoryWidget(BuildContext context, TopCategory topCategory) {
       ),
     ),
   );
+}
+
+class TopVegetables extends StatelessWidget {
+  const TopVegetables({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    ProductRepository productRepository = new ProductRepository();
+    return FutureBuilder(
+      future: productRepository.fetchTopProducts(),
+      builder: (context, AsyncSnapshot<List<Product>> snapshot) {
+        if (!snapshot.hasData) {
+          return CircularProgressIndicator();
+        } else
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: snapshot.data!.map(
+                    (e) {
+                  return productCard(
+                    context,
+                    e,
+                  );
+                },
+              ).toList(),
+            ),
+          );
+      },
+    );
+  }
+}
+
+class TopFruits extends StatelessWidget {
+  const TopFruits({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    ProductRepository productRepository = new ProductRepository();
+    return FutureBuilder(
+      future: productRepository.fetchTopFruits(),
+      builder: (context, AsyncSnapshot<List<Product>> snapshot) {
+        if (!snapshot.hasData) {
+          return CircularProgressIndicator();
+        } else
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: snapshot.data!.map(
+                    (e) {
+                  return productCard(
+                    context,
+                    e,
+                  );
+                },
+              ).toList(),
+            ),
+          );
+      },
+    );
+  }
 }

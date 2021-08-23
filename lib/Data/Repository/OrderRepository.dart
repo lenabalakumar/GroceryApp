@@ -11,14 +11,29 @@ class OrderRepository extends Equatable {
   CartRepository cartRepository = CartRepository();
 
   void placeOrder(
-      List<Product> cartItems, double cartTotal, String orderID, DateTime orderPlacedTime, User user) {
-    orders.add(Order(
-      orderID: orderID,
-        orderPlacedTime: orderPlacedTime,
-        totalCartValue: cartTotal,
-        productsFromCart: cartItems,
-    user: user));
-    addOrderToFirebase(cartItems, cartTotal, orderID, orderPlacedTime, user);
+    List<Product> cartItems,
+    double cartTotal,
+    String orderID,
+    DateTime orderPlacedTime,
+    User user,
+  ) {
+    //Adding an order to orders list
+    orders.add(
+      Order(
+          orderID: orderID,
+          orderPlacedTime: orderPlacedTime,
+          totalCartValue: cartTotal,
+          productsFromCart: cartItems,
+          user: user),
+    );
+    // Calling a function to load order into firebase database
+    addOrderToFirebase(
+      cartItems,
+      cartTotal,
+      orderID,
+      orderPlacedTime,
+      user,
+    );
   }
 
   Future<void> addOrderToFirebase(List<Product> cartItems, double cartTotal,
@@ -26,18 +41,8 @@ class OrderRepository extends Equatable {
     final CollectionReference collection =
         FirebaseFirestore.instance.collection("Orders");
 
-    // Map<String, dynamic> data = <String, dynamic>{
-    //   "UserMobileNumber": userMobileNumber,
-    //   "OrderTotal": cartTotal,
-    //   "Product": cartItems.map((e) => {
-    //         "ProductID": e.productID,
-    //         "ProductName": e.productName,
-    //         "ProductQuantity": e.productQuantity
-    //       })
-    // };
-
     Order order = new Order(
-      orderID: orderID,
+        orderID: orderID,
         orderPlacedTime: orderPlacedTime,
         totalCartValue: cartTotal,
         productsFromCart: cartItems.map((e) {
@@ -49,10 +54,12 @@ class OrderRepository extends Equatable {
               productQuantity: e.productQuantity,
               productInStock: e.productInStock,
               productSKU: e.productSKU);
-        }).toList(), user: user);
+        }).toList(),
+        user: user);
 
-    await collection.add(order.toJson()).whenComplete(() => cartRepository.cartItems = []);
-
+    await collection
+        .add(order.toJson())
+        .whenComplete(() => cartRepository.cartItems = []);
   }
 
   @override

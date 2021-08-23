@@ -38,7 +38,10 @@ class ShoppingCartBody extends StatelessWidget {
               child: BlocBuilder<CartProviderBloc, CartProviderState>(
                 builder: (context, state) {
                   if (state is CartLoadingState) {
-                    return Text('No items in cart');
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(child: Text('No items in cart')),
+                    );
                   } else if (state is CartLoadedState) {
                     return SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -49,7 +52,10 @@ class ShoppingCartBody extends StatelessWidget {
                                 .toList()
                             : [
                                 Center(
-                                  child: Text('No items in cart'),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Center(child: Text('No items in cart')),
+                                  ),
                                 )
                               ],
                       ),
@@ -57,7 +63,10 @@ class ShoppingCartBody extends StatelessWidget {
                   } else if (state is CartErrorState) {
                     return Text('Error loading cart');
                   }
-                  return Text('No items in cart');
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(child: Text('No items in cart')),
+                  );
                 },
               ),
             ),
@@ -87,7 +96,7 @@ class ShoppingCartBody extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Due: Rs. ${state.cartTotal}'
+                                        'Due: Rs. ${state.cartTotal.toStringAsFixed(2)}'
                                             .toString(),
                                         style: GoogleFonts.inter(
                                             fontSize: 14,
@@ -126,7 +135,7 @@ class ShoppingCartBody extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 100.0,
+        height: 120.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           color: Colors.white,
@@ -160,22 +169,23 @@ class ShoppingCartBody extends StatelessWidget {
               ),
               Container(
                 width: 180,
-                height: 80,
+                height: 100,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(8)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(product.productName),
+                          Text(product.productName, style: TextStyle(fontSize: 18),),
                           Text(product.productSKU),
                         ],
                       ),
-                      Text(product.productPrice.toString()),
+                      Text('Rs. ${product.productPrice}'.toString()),
                       Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,

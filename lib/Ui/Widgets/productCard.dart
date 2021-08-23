@@ -6,7 +6,7 @@ import 'package:groceryapp/Data/Model/Product.dart';
 
 Widget productCard(BuildContext context,Product product) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
     child: Container(
       width: MediaQuery.of(context).size.width * 1 / 2,
       height: MediaQuery.of(context).size.height * 1 / 3,
@@ -125,14 +125,14 @@ Widget productCard(BuildContext context,Product product) {
                   height: 30,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Colors.green.withOpacity(.75),
+                    color: Colors.white,
                   ),
                   child: Center(
                     child: Text(
                       'Out of stock',
                       style: GoogleFonts.inter(
                           fontSize: 12,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
