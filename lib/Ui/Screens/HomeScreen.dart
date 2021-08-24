@@ -10,7 +10,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: _drawerWidget(context),
+      ),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         title: Center(child: Text('App')),
@@ -77,4 +79,101 @@ class HomeScreen extends StatelessWidget {
       body: HomeScreenBody(),
     );
   }
+}
+
+Widget _drawerWidget(BuildContext context) {
+  return ListView(
+    children: <Widget>[
+      _createHeader(context),
+      Divider(),
+      ListTile(
+        title: Row(
+          children: [
+            Icon(Icons.face),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Personal info'),
+            ),
+          ],
+        ),
+      ),
+      ListTile(
+        title: Row(
+          children: [
+            Icon(Icons.airport_shuttle),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Order details'),
+            ),
+          ],
+        ),
+      ),
+      ListTile(
+        title: Row(
+          children: [
+            Icon(Icons.web),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('About us'),
+            ),
+          ],
+        ),
+      ),
+      ListTile(
+        title: Row(
+          children: [
+            Icon(Icons.phone),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Contact us'),
+            ),
+          ],
+        ),
+      ),
+      ListTile(
+        title: Row(
+          children: [
+            Icon(Icons.book),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Terms and conditions'),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _createHeader(BuildContext context) {
+  return DrawerHeader(
+    margin: EdgeInsets.zero,
+    padding: EdgeInsets.zero,
+    decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+    child: Stack(
+      children: <Widget>[
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                    child: Image.asset('res/images/avatar_icon.png')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Welcome guest',
+                  style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w500, fontSize: 20),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
 }
