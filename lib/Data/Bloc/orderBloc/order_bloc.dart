@@ -33,6 +33,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               userMobileNumber: event.userDetails.userMobileNumber,
               userAddressLineOne: event.userDetails.userAddressLineOne,
               userAddressLineTwo: event.userDetails.userAddressLineTwo,
+              userCityName: event.userDetails.userCityName,
               userPincode: event.userDetails.userPincode,
               userLandmark: event.userDetails.userLandmark),
         );

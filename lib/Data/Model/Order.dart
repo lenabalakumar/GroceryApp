@@ -25,6 +25,7 @@ class Order {
                 userAddressLineOne: this.user.userAddressLineOne,
                 userAddressLineTwo: this.user.userAddressLineTwo,
                 userMobileNumber: this.user.userMobileNumber,
+                userCityName: this.user.userCityName,
                 userPincode: this.user.userPincode,
                 userLandmark: this.user.userLandmark)
             .toJson(),

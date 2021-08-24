@@ -21,9 +21,17 @@ class OrderSummaryScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Thank you for placing an order',
+                  'Thank you',
                   style: GoogleFonts.inter(
-                      fontSize: 16, fontWeight: FontWeight.w500,),
+                      fontSize: 28, fontWeight: FontWeight.w500,),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'We have received your order and will contact you shortly',
+                  style: GoogleFonts.inter(
+                    fontSize: 14, fontWeight: FontWeight.w500,),
                 ),
               ),
               Row(

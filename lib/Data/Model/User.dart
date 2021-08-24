@@ -3,6 +3,7 @@ class User {
   String userMobileNumber;
   String userAddressLineOne;
   String userAddressLineTwo;
+  String userCityName;
   String userPincode;
   String userLandmark;
 
@@ -11,6 +12,7 @@ class User {
       required this.userMobileNumber,
       required this.userAddressLineOne,
       required this.userAddressLineTwo,
+        required this.userCityName,
       required this.userPincode,
       required this.userLandmark});
 
@@ -19,6 +21,7 @@ class User {
         'userMobileNumber': userMobileNumber,
         'userAddressLineOne': userAddressLineOne,
         'userAddressLineTwo': userAddressLineTwo,
+    'userCityName': userCityName,
         'userPincode': userPincode,
         'userLandmark': userLandmark,
       };
