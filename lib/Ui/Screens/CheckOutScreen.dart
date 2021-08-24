@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groceryapp/Data/Bloc/orderBloc/order_bloc.dart';
 import 'package:groceryapp/Data/Model/User.dart';
+import 'package:groceryapp/Ui/Screens/OrderSummaryScreen.dart';
 
 // class CheckOutScreen extends StatelessWidget {
 //   final TextEditingController _mobileNumber = new TextEditingController();
@@ -165,7 +166,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           onTap: () => Navigator.pop(context),
           child: Icon(Icons.arrow_back),
         ),
-        title: Center(child: Text('Check out')),
+        title: Center(
+          child: Text('Check out'),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -179,7 +182,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(child: Text('+91', style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w500),),),
+                        child: Container(
+                          child: Text(
+                            '+91',
+                            style: GoogleFonts.inter(
+                                fontSize: 20, fontWeight: FontWeight.w500),
+                          ),
+                        ),
                       ),
                       Expanded(
                         child: TextFormField(
@@ -205,9 +214,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     controller: _userName,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                        labelText: 'Enter your name',
-                        labelStyle: GoogleFonts.inter(
-                            fontSize: 16, fontWeight: FontWeight.w400)),
+                      labelText: 'Enter your name',
+                      labelStyle: GoogleFonts.inter(
+                          fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Name cannot be empty';
@@ -275,8 +285,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ElevatedButton(
-                      onPressed: () {
+                    child: InkWell(
+                      onTap: () {
                         // Validate will return true if the form is valid, or false if
                         // the form is invalid.
                         if (_formKey.currentState!.validate()) {
@@ -291,11 +301,33 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                   userLandmark: _landmark.text),
                             ),
                           );
-                          Navigator.of(context).pushNamed('/orderSummary');
+                          // Navigator.of(context).pushNamed('/orderSummary');
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OrderSummaryScreen(),
+                              ),
+                              (route) => false);
                           // print('address line one: ${_addressLineOne.text}');
                         }
                       },
-                      child: const Text('Submit'),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 1 / 12,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).accentColor),
+                        child: Center(
+                          child: Text(
+                            'Place order',
+                            style: GoogleFonts.inter(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
