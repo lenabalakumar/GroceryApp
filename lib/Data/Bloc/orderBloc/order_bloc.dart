@@ -28,8 +28,15 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           cartRepository.totalCValue,
           Uuid().v4(),
           DateTime.now(),
-          User(userFullName: event.userDetails.userFullName, userMobileNumber: event.userDetails.userMobileNumber, userAddressLineOne: event.userDetails.userAddressLineOne, userAddressLineTwo: event.userDetails.userAddressLineTwo, userPincode: event.userDetails.userPincode, userLandmark: event.userDetails.userLandmark),
+          User(
+              userFullName: event.userDetails.userFullName,
+              userMobileNumber: event.userDetails.userMobileNumber,
+              userAddressLineOne: event.userDetails.userAddressLineOne,
+              userAddressLineTwo: event.userDetails.userAddressLineTwo,
+              userPincode: event.userDetails.userPincode,
+              userLandmark: event.userDetails.userLandmark),
         );
+        print('address line one ${event.userDetails.userAddressLineOne}');
       }
     } on Exception {}
   }

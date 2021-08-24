@@ -17,7 +17,7 @@ class User {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'userName': userFullName,
         'userMobileNumber': userMobileNumber,
-        'userAddressLineOne': userAddressLineTwo,
+        'userAddressLineOne': userAddressLineOne,
         'userAddressLineTwo': userAddressLineTwo,
         'userPincode': userPincode,
         'userLandmark': userLandmark,
