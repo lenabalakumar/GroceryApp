@@ -8,8 +8,8 @@ Widget productCard(BuildContext context,Product product) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
     child: Container(
-      width: MediaQuery.of(context).size.width * 1 / 2,
-      height: MediaQuery.of(context).size.height * 1 / 3,
+      width: MediaQuery.of(context).size.width * 2 / 5,
+      height: MediaQuery.of(context).size.height * 2 / 7,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -29,9 +29,9 @@ Widget productCard(BuildContext context,Product product) {
             Stack(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 1 / 2 -
+                  width: MediaQuery.of(context).size.width * 2 / 5 -
                       MediaQuery.of(context).size.width * 1 / 20,
-                  height: MediaQuery.of(context).size.height * 1 / 3 -
+                  height: MediaQuery.of(context).size.height * 2 / 7 -
                       MediaQuery.of(context).size.height * 1 / 10,
                   decoration: BoxDecoration(
                     color: Theme.of(context).accentColor,
@@ -49,21 +49,21 @@ Widget productCard(BuildContext context,Product product) {
                   bottom: 10,
                   left: 10,
                   child: Container(
-                    width: 80,
-                    height: 30,
+                    width: 70,
+                    height: 25,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: Colors.black.withOpacity(.25),
                     ),
                     child: Center(
                       child: product.productInStock ? Text(
-                        'In stock',
+                        'In stock'.toUpperCase(),
                         style:
-                        GoogleFonts.inter(fontSize: 14, color: Colors.white),
+                        GoogleFonts.inter(fontSize: 6, color: Colors.white),
                       ) : Text(
-                        'Out of stock',
+                        'Out of stock'.toUpperCase(),
                         style:
-                        GoogleFonts.inter(fontSize: 12, color: Colors.red),
+                        GoogleFonts.inter(fontSize: 6, color: Colors.red),
                       ),
                     ),
                   ),
@@ -76,16 +76,16 @@ Widget productCard(BuildContext context,Product product) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    product.productName,
+                    product.productName.toUpperCase(),
                     style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w600, fontSize: 20),
+                        fontWeight: FontWeight.w600, fontSize: 13),
                   ),
                   Text(
                     product.productSKU,
                     style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 16,
-                        fontStyle: FontStyle.italic),
+                        fontWeight: FontWeight.w300,
+                        fontSize: 10,
+                        fontStyle: FontStyle.normal),
                   ),
                 ],
               ),
@@ -94,34 +94,35 @@ Widget productCard(BuildContext context,Product product) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Rs. ${product.productPrice}'.toString(),
+                  'Rs. ${product.productPrice.toStringAsFixed(2)}'.toString().toUpperCase(),
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 10,
+                      fontStyle: FontStyle.normal,),
                 ),
                 product.productInStock ?
+                    product.productQuantity < 2 ?
                 InkWell(
                   onTap: () => BlocProvider.of<CartProviderBloc>(context).add(AddItemToCart(product: product)),
                   child: Container(
-                    width: 90,
-                    height: 30,
+                    width: 70,
+                    height: 25,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: Theme.of(context).accentColor,
                     ),
                     child: Center(
                       child: Text(
-                        'Buy now',
+                        'Buy now'.toUpperCase(),
                         style: GoogleFonts.inter(
-                            fontSize: 14,
+                            fontSize: 8,
                             color: Colors.white,
                             fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
-                ) : Container(
-                  width: 90,
+                ): Container(child: Text('hello'),) : Container(
+                  width: 80,
                   height: 30,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -129,9 +130,9 @@ Widget productCard(BuildContext context,Product product) {
                   ),
                   child: Center(
                     child: Text(
-                      'Out of stock',
+                      'Out of stock'.toUpperCase(),
                       style: GoogleFonts.inter(
-                          fontSize: 12,
+                          fontSize: 7,
                           color: Colors.black,
                           fontWeight: FontWeight.w600),
                     ),

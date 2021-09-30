@@ -12,7 +12,7 @@ class User {
       required this.userMobileNumber,
       required this.userAddressLineOne,
       required this.userAddressLineTwo,
-        required this.userCityName,
+      required this.userCityName,
       required this.userPincode,
       required this.userLandmark});
 
@@ -21,7 +21,7 @@ class User {
         'userMobileNumber': userMobileNumber,
         'userAddressLineOne': userAddressLineOne,
         'userAddressLineTwo': userAddressLineTwo,
-    'userCityName': userCityName,
+        'userCityName': userCityName,
         'userPincode': userPincode,
         'userLandmark': userLandmark,
       };

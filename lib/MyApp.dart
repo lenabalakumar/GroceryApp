@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
         '/meatCategoryScreen': (context) => MeatCategoryScreen(),
       },
       theme: ThemeData(
-        primaryColor: Color(0xFFf4a261),
-        accentColor: Color(0xFFe76f51),
+        primaryColor: Color(0xFF1DCD1A),
+        accentColor: Color(0xFF099807),
       ),
     );
   }

@@ -15,7 +15,15 @@ class HomeScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
-        title: Center(child: Text('App')),
+        title: Center(
+          child: Text(
+            'Green abode',
+            style: GoogleFonts.inter(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -48,6 +56,7 @@ class HomeScreen extends StatelessWidget {
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
+                                fontSize: 8,
                               ),
                             );
                           } else if (state is CartLoadedState) {
@@ -56,6 +65,7 @@ class HomeScreen extends StatelessWidget {
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
+                                fontSize: 8,
                               ),
                             );
                           } else
@@ -64,6 +74,7 @@ class HomeScreen extends StatelessWidget {
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
+                                fontSize: 8,
                               ),
                             );
                         },

@@ -54,7 +54,8 @@ class ShoppingCartBody extends StatelessWidget {
                                 Center(
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Center(child: Text('No items in cart')),
+                                    child:
+                                        Center(child: Text('No items in cart')),
                                   ),
                                 )
                               ],
@@ -99,7 +100,7 @@ class ShoppingCartBody extends StatelessWidget {
                                         'Due: Rs. ${state.cartTotal.toStringAsFixed(2)}'
                                             .toString(),
                                         style: GoogleFonts.inter(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: Colors.white),
                                       ),
@@ -181,11 +182,21 @@ class ShoppingCartBody extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(product.productName, style: TextStyle(fontSize: 18),),
-                          Text(product.productSKU),
+                          Text(
+                            product.productName.toUpperCase(),
+                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            product.productSKU.toUpperCase(),
+                            style: TextStyle(fontSize: 12),
+                          ),
                         ],
                       ),
-                      Text('Rs. ${product.productPrice}'.toString()),
+                      Text(
+                          'Rs. ${product.productPrice.toStringAsFixed(2)}'
+                              .toString()
+                              .toUpperCase(),
+                          style: TextStyle(fontSize: 12)),
                       Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -204,7 +215,7 @@ class ShoppingCartBody extends StatelessWidget {
                                   child: Text(
                                     '-',
                                     style: GoogleFonts.inter(
-                                        fontSize: 24, color: Colors.white),
+                                        fontSize: 14, color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -230,7 +241,7 @@ class ShoppingCartBody extends StatelessWidget {
                                   child: Text(
                                     '+',
                                     style: GoogleFonts.inter(
-                                        fontSize: 24, color: Colors.white),
+                                        fontSize: 14, color: Colors.white),
                                   ),
                                 ),
                               ),

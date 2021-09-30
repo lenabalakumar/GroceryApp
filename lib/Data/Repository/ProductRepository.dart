@@ -35,7 +35,7 @@ class ProductRepository {
 
   Future<List<Product>> fetchTopFruits() async {
     QuerySnapshot snapshot =
-    await FirebaseFirestore.instance.collection("TopFruits").get();
+        await FirebaseFirestore.instance.collection("TopFruits").get();
 
     snapshot.docs.forEach((productSnapshot) {
       product = Product(

@@ -4,6 +4,7 @@ import 'package:groceryapp/Data/Model/Product.dart';
 import 'package:groceryapp/Data/Model/TopCategory.dart';
 import 'package:groceryapp/Data/Repository/ProductRepository.dart';
 import 'package:groceryapp/Ui/Widgets/productCard.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class HomeScreenBody extends StatelessWidget {
                     'Free delivery on orders worth Rs. 300 or above',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
-                        fontSize: 16,
+                        fontSize: 12,
                         color: Colors.white),
                   ),
                 ),
@@ -88,7 +89,7 @@ Widget topCategoryWidget(BuildContext context, TopCategory topCategory) {
       width: MediaQuery.of(context).size.width * 11.5 / 25,
       height: MediaQuery.of(context).size.height * 1 / 8,
       decoration: BoxDecoration(
-        color: Colors.deepOrangeAccent,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Stack(
@@ -110,10 +111,10 @@ Widget topCategoryWidget(BuildContext context, TopCategory topCategory) {
             ),
             child: Center(
               child: Text(
-                topCategory.categoryName,
+                topCategory.categoryName.toUpperCase(),
                 style: GoogleFonts.inter(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
               ),
@@ -131,17 +132,45 @@ class TopVegetables extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductRepository productRepository = new ProductRepository();
+    bool isLoading = true;
+
     return FutureBuilder(
       future: productRepository.fetchTopProducts(),
       builder: (context, AsyncSnapshot<List<Product>> snapshot) {
         if (!snapshot.hasData) {
-          return CircularProgressIndicator();
+          return Container(
+            height: 120.0,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    enabled: true,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (context, index) => Row(
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
         } else
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: snapshot.data!.map(
-                    (e) {
+                (e) {
                   return productCard(
                     context,
                     e,
@@ -171,7 +200,7 @@ class TopFruits extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: snapshot.data!.map(
-                    (e) {
+                (e) {
                   return productCard(
                     context,
                     e,
